@@ -1,0 +1,19 @@
+{
+  "name": "NodeItalia",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.4.8",
+    "jade": "*",
+    "twitter-bootstrap": "*",
+    "random-to": "*"
+  },
+  "description": "A website which tests your Italian to English translation skills. Written in node.js.",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "Clive Bunting",
+  "license": "ISC"
+}

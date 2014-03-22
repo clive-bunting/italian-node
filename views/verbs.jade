@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+  p Ok let's test our knowledge of #{title}
+  
+
+  div
+
+    form.form-inline#formSubmitAnswer(name="submitAnswer",method="post",action="/verbsAnswer")
+      div The translation of "#{words[whichWord].English}" is  
+        input#inputItalian(type="text", placeholder="Italian", name="Italian") 
+        input#inputIndex(type="hidden", name="Index", value="#{whichWord}")
+        button#btnSubmit(type="submit") submit
+
+  div
+    table
+      thead
+        tr
+          th English
+          th Italian
+      tbody
+        each verb in words
+          tr
+            td #{verb.English}
+            td #{verb.Italian}
