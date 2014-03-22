@@ -1,4 +1,10 @@
-$("button").click(function(){
+$("#inputItalian").on('keyup', function(e) {
+	if(e.keyCode==13){
+		 $('#btnSubmit').trigger('click');
+	 }
+});
+
+$("#btnSubmit").click(function(){
   txt=$("#inputItalian").val();
   whichWord=$("#inputIndex").val();
   $.post('/verbsAnswer',
