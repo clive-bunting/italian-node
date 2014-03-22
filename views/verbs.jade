@@ -10,6 +10,12 @@ block content
         input#inputIndex(type="hidden", name="Index", value="#{whichWord}")
         button#btnSubmit(type="submit") submit
 
+    div Your answer was 
+        strong(data-bind="text: answer") 
+        span , the correct answer was 
+        strong(data-bind="text: correctAnswer")
+
     script(src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js")
+    script(src="/javascripts/knockout-latest.js")
     script(src="/javascripts/main.js")
 

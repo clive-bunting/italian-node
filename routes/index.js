@@ -19,7 +19,7 @@ exports.verbsAnswer = function(req, res){
   console.log(req.body.Index);
   console.log(verbs.verbs[req.body.Index]);
   if(verbs.verbs[req.body.Index].Italian === req.body.Italian)
-  	res.send({answer:"Correct",correctAnswer:verbs.verbs[req.body.Index].Italian});
+  	res.send({answer:"correct",correctAnswer:verbs.verbs[req.body.Index].Italian});
   else
-  	res.send({answer:"Wrong",correctAnswer:verbs.verbs[req.body.Index].Italian});
+  	res.send({answer:"wrong",correctAnswer:verbs.verbs[req.body.Index].Italian});
 };

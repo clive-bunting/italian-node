@@ -13,6 +13,18 @@ $("#btnSubmit").click(function(){
 	Index:whichWord
   },
   function(data,status){
-    alert("Your answer was " + data.answer + "\nThe correct answer was " + data.correctAnswer);
+	AppViewModel.answer(data.answer);
+	AppViewModel.correctAnswer(data.correctAnswer);
   });
 });
+
+
+var AppViewModel = {
+   English:ko.observable("hello"),
+   wordIndex:0,
+   answer:ko.observable(""),
+   correctAnswer:ko.observable("")
+};
+
+// Activates knockout.js
+ko.applyBindings(AppViewModel);
