@@ -15,15 +15,17 @@ $("#btnSubmit").click(function(){
   function(data,status){
 	AppViewModel.answer(data.answer);
 	AppViewModel.correctAnswer(data.correctAnswer);
+	AppViewModel.shouldShowMessage(true);
   });
 });
 
 
 var AppViewModel = {
    English:ko.observable("hello"),
-   wordIndex:0,
+   wordIndex:ko.observable(0),
    answer:ko.observable(""),
-   correctAnswer:ko.observable("")
+   correctAnswer:ko.observable(""),
+   shouldShowMessage:ko.observable(false)
 };
 
 // Activates knockout.js

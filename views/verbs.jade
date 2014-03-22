@@ -10,7 +10,7 @@ block content
         input#inputIndex(type="hidden", name="Index", value="#{whichWord}")
         button#btnSubmit(type="submit") submit
 
-    div Your answer was 
+    div(data-bind="visible: shouldShowMessage") Your answer was 
         strong(data-bind="text: answer") 
         span , the correct answer was 
         strong(data-bind="text: correctAnswer")
