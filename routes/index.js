@@ -1,12 +1,9 @@
-
 /*
  * GET home page.
  */
 var random = require('random-to');
 
 var verbs = require('../data/verbs.json');
-
-var answers = require('../answer.js');
 
 exports.index = function(req, res){
   res.render('index', { title: 'Italian Node' });
@@ -18,17 +15,11 @@ exports.verbs = function(req, res){
 };
 
 exports.verbsAnswer = function(req, res){
-
-  var a = new answers.answer(req.body.Italian);
-  console.log(a);
-
   console.log(req.body.Italian);
   console.log(req.body.Index);
   console.log(verbs.verbs[req.body.Index]);
   if(verbs.verbs[req.body.Index].Italian === req.body.Italian)
-  	console.log("Correct!");
+  	res.send({answer:"Correct",correctAnswer:verbs.verbs[req.body.Index].Italian});
   else
-  	console.log("Wrong!");
-
-  res.redirect('/verbs');
+  	res.send({answer:"Wrong",correctAnswer:verbs.verbs[req.body.Index].Italian});
 };
