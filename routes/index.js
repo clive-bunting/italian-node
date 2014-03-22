@@ -10,16 +10,28 @@ exports.index = function(req, res){
 };
 
 exports.verbs = function(req, res){
-  var x = random.from0to(verbs.verbs.length-1); 
-  res.render('verbs', { title: 'Italian Verbs', words: verbs.verbs, whichWord: x });
+  res.render('verbs', { title: 'Italian Verbs' });
 };
 
 exports.verbsAnswer = function(req, res){
-  console.log(req.body.Italian);
-  console.log(req.body.Index);
-  console.log(verbs.verbs[req.body.Index]);
+  var x = random.from0to(verbs.verbs.length-1); 
   if(verbs.verbs[req.body.Index].Italian === req.body.Italian)
-  	res.send({answer:"correct",correctAnswer:verbs.verbs[req.body.Index].Italian});
+  	res.send({
+		answer:"correct", 
+		correctAnswer:verbs.verbs[req.body.Index].Italian,
+		English:verbs.verbs[x].English, 
+		Index:x
+		});
   else
-  	res.send({answer:"wrong",correctAnswer:verbs.verbs[req.body.Index].Italian});
+  	res.send({
+		answer:"wrong", 
+		correctAnswer:verbs.verbs[req.body.Index].Italian,
+		English:verbs.verbs[x].English, 
+		Index:x
+		});
+};
+
+exports.words = function(req, res){
+  var x = random.from0to(verbs.verbs.length-1); 
+  res.send({English:verbs.verbs[x].English, Index:x});
 };

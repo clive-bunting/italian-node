@@ -1,3 +1,10 @@
+$(document).ready(function(){
+	$.get('/words', function(data){
+		AppViewModel.English(data.English);
+		AppViewModel.wordIndex(data.Index);
+	});
+});
+
 $("#inputItalian").on('keyup', function(e) {
 	if(e.keyCode==13){
 		 $('#btnSubmit').trigger('click');
@@ -6,7 +13,7 @@ $("#inputItalian").on('keyup', function(e) {
 
 $("#btnSubmit").click(function(){
   txt=$("#inputItalian").val();
-  whichWord=$("#inputIndex").val();
+  whichWord=AppViewModel.wordIndex;
   $.post('/verbsAnswer',
   {
 	Italian:txt,
@@ -16,6 +23,9 @@ $("#btnSubmit").click(function(){
 	AppViewModel.answer(data.answer);
 	AppViewModel.correctAnswer(data.correctAnswer);
 	AppViewModel.shouldShowMessage(true);
+	AppViewModel.English(data.English);
+	AppViewModel.wordIndex(data.Index);
+	$("#inputItalian").val("");
   });
 });
 
