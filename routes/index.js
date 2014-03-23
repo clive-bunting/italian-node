@@ -17,14 +17,18 @@ exports.verbsAnswer = function(req, res){
   var x = random.from0to(verbs.verbs.length-1); 
   if(verbs.verbs[req.body.Index].Italian === req.body.Italian)
   	res.send({
-		answer:"correct", 
+	    correct:true,
+		question:verbs.verbs[req.body.Index].English,
+		answer:req.body.Italian, 
 		correctAnswer:verbs.verbs[req.body.Index].Italian,
 		English:verbs.verbs[x].English, 
 		Index:x
 		});
   else
   	res.send({
-		answer:"wrong", 
+	    correct:false,
+		question:verbs.verbs[req.body.Index].English,
+		answer:req.body.Italian, 
 		correctAnswer:verbs.verbs[req.body.Index].Italian,
 		English:verbs.verbs[x].English, 
 		Index:x

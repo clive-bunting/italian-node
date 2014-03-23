@@ -8,15 +8,32 @@ block content
     div The translation of "
         span(data-bind="text: English")
         span " is  
-        input#inputItalian(type="text", data-bind="value: Italian", placeholder="Italian", name="Italian") 
-        button#btnSubmit(type="submit") submit
+        input#inputItalian(type="text", data-bind="value: Italian, valueUpdate: 'afterkeydown'", placeholder="Italian", name="Italian") 
+        button#btnSubmit(type="submit", data-bind="enable: Italian().length > 0") submit
 
-    div(data-bind="visible: shouldShowMessage") Your answer was 
-        strong(data-bind="text: answer") 
-        span , the correct answer was 
-        strong(data-bind="text: correctAnswer")
+
+    p So far you have got 
+        span(data-bind="text: correctAnswers().length") 
+        span  questions correct 
+
+    table(data-bind="visible: answers().length > 0")
+        thead
+            tr
+                th English Phrase
+                th Your Translation
+                th Correct Translation
+                th Correct?
+        tbody(data-bind="foreach: answers")
+            tr
+                td
+                    span(data-bind="text: question")
+                td
+                    span(data-bind="text: answer")
+                td
+                    span(data-bind="text: correctAnswer")
+                td
+                    span(data-bind="text: correct")
 
     script(src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js")
     script(src="/javascripts/knockout-latest.js")
     script(src="/javascripts/main.js")
-
