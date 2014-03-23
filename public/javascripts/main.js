@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$.get('/words', function(data){
-		AppViewModel.English(data.English);
-		AppViewModel.wordIndex(data.Index);
+		viewModel.English(data.English);
+		viewModel.wordIndex(data.Index);
 	});
 });
 
@@ -12,31 +12,30 @@ $("#inputItalian").on('keyup', function(e) {
 });
 
 $("#btnSubmit").click(function(){
-  txt=$("#inputItalian").val();
-  whichWord=AppViewModel.wordIndex;
   $.post('/verbsAnswer',
   {
-	Italian:txt,
-	Index:whichWord
+	Italian:viewModel.Italian,
+	Index:viewModel.wordIndex
   },
   function(data,status){
-	AppViewModel.answer(data.answer);
-	AppViewModel.correctAnswer(data.correctAnswer);
-	AppViewModel.shouldShowMessage(true);
-	AppViewModel.English(data.English);
-	AppViewModel.wordIndex(data.Index);
-	$("#inputItalian").val("");
+	viewModel.answer(data.answer);
+	viewModel.correctAnswer(data.correctAnswer);
+	viewModel.shouldShowMessage(true);
+	viewModel.English(data.English);
+	viewModel.wordIndex(data.Index);
+	viewModel.Italian("");
   });
 });
 
 
-var AppViewModel = {
-   English:ko.observable("hello"),
+var viewModel = {
+   English:ko.observable(""),
    wordIndex:ko.observable(0),
    answer:ko.observable(""),
    correctAnswer:ko.observable(""),
-   shouldShowMessage:ko.observable(false)
+   shouldShowMessage:ko.observable(false),
+   Italian:ko.observable("")
 };
 
 // Activates knockout.js
-ko.applyBindings(AppViewModel);
+ko.applyBindings(viewModel);

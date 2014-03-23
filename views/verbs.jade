@@ -8,7 +8,7 @@ block content
     div The translation of "
         span(data-bind="text: English")
         span " is  
-        input#inputItalian(type="text", placeholder="Italian", name="Italian") 
+        input#inputItalian(type="text", data-bind="value: Italian", placeholder="Italian", name="Italian") 
         button#btnSubmit(type="submit") submit
 
     div(data-bind="visible: shouldShowMessage") Your answer was 
