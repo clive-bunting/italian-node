@@ -1,8 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Ok let's test our knowledge of #{title}
+
+  div(container)
+    h1= title
+    p Ok let's test our knowledge of #{title}
   
   div
     div The translation of "
@@ -16,7 +18,7 @@ block content
         span(data-bind="text: correctAnswers().length") 
         span  questions correct 
 
-    table(data-bind="visible: answers().length > 0")
+    table(class="table table-striped", data-bind="visible: answers().length > 0")
         thead
             tr
                 th English Phrase
@@ -32,7 +34,7 @@ block content
                 td
                     span(data-bind="text: correctAnswer")
                 td
-                    span(data-bind="text: correct")
+                    span(data-bind="text: correct, style: { color: correct==true ? 'green' : 'red' }")
 
     script(src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js")
     script(src="/javascripts/knockout-latest.js")
