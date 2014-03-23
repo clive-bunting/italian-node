@@ -34,7 +34,7 @@ var QuestionAndAnswerModel = function() {
     self.answers = ko.observableArray([]);
  
     self.addAnswer = function(answer) {
-        self.answers.push(answer);
+        self.answers.unshift(answer);
     };
  
     self.removeAnswer = function(answer) {
