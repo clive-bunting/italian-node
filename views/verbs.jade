@@ -16,9 +16,10 @@ block content
 
     p So far you have got 
         span(data-bind="text: correctAnswers().length") 
-        span  questions correct 
+        span  questions correct out of a total of 
+        span(data-bind="text: answers().length")
 
-    table(class="table table-striped", data-bind="visible: answers().length > 0")
+    table(class="table table-bordered", data-bind="visible: answers().length > 0")
         thead
             tr
                 th English Phrase
@@ -26,7 +27,7 @@ block content
                 th Correct Translation
                 th Correct?
         tbody(data-bind="foreach: answers")
-            tr
+            tr(data-bind="css: { success: correct==true, warning: correct==false }")
                 td
                     span(data-bind="text: question")
                 td
