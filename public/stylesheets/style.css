@@ -1,8 +1,15 @@
+.largePercent {
+  font: bold 50px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: orange;
+}
+
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:#ccc;
 }
 
-a {
-  color: #00B7FF;
+h1 {
+  color: #80bd01;
 }
+

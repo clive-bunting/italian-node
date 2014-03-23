@@ -2,41 +2,43 @@ extends layout
 
 block content
 
-  div(container)
+  div(class="container")
     h1= title
     p Ok let's test our knowledge of #{title}
   
-  div
     div The translation of "
-        span(data-bind="text: English")
-        span " is  
-        input#inputItalian(type="text", data-bind="value: Italian, valueUpdate: 'afterkeydown'", placeholder="Italian", name="Italian") 
-        button#btnSubmit(type="submit", data-bind="enable: Italian().length > 0") submit
+      span(data-bind="text: English")
+      span " is  
+      input#inputItalian(type="text", data-bind="value: Italian, valueUpdate: 'afterkeydown'", placeholder="Italian", name="Italian") 
+      button#btnSubmit(type="submit", data-bind="enable: Italian().length > 0") submit
 
 
-    p So far you have got 
+      div So far you have got 
         span(data-bind="text: correctAnswers().length") 
         span  questions correct out of a total of 
         span(data-bind="text: answers().length")
 
-    table(class="table table-bordered", data-bind="visible: answers().length > 0")
-        thead
-            tr
-                th English Phrase
-                th Your Translation
-                th Correct Translation
-                th Correct?
-        tbody(data-bind="foreach: answers")
-            tr(data-bind="css: { success: correct==true, warning: correct==false }")
-                td
-                    span(data-bind="text: question")
-                td
-                    span(data-bind="text: answer")
-                td
-                    span(data-bind="text: correctAnswer")
-                td
-                    span(data-bind="text: correct, style: { color: correct==true ? 'green' : 'red' }")
+      div
+        span(class="largePercent", data-bind="text: percentCorrect")
 
-    script(src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js")
-    script(src="/javascripts/knockout-latest.js")
-    script(src="/javascripts/main.js")
+      table(class="table table-bordered", data-bind="visible: answers().length > 0")
+        thead
+          tr
+            th English Phrase
+            th Your Translation
+            th Correct Translation
+            th Correct?
+        tbody(data-bind="foreach: answers")
+          tr(data-bind="css: { success: correct==true, warning: correct==false }")
+            td
+              span(data-bind="text: question")
+            td
+              span(data-bind="text: answer")
+            td
+              span(data-bind="text: correctAnswer")
+            td
+              span(data-bind="text: correct, style: { color: correct==true ? 'green' : 'red' }")
+
+  script(src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.0.min.js")
+  script(src="/javascripts/knockout-latest.js")
+  script(src="/javascripts/main.js")

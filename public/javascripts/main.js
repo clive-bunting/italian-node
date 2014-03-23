@@ -6,7 +6,7 @@ $(document).ready(function(){
 });
 
 $("#inputItalian").on('keyup', function(e) {
-	if(e.keyCode==13){
+	if(e.keyCode==13 && viewModel.Italian().length > 0){
 		 $('#btnSubmit').trigger('click');
 	 }
 });
@@ -24,7 +24,6 @@ $("#btnSubmit").click(function(){
 	viewModel.IndexOfWord(data.Index);
   });
 });
-
 
 var QuestionAndAnswerModel = function() {
     var self = this;
@@ -46,20 +45,14 @@ var QuestionAndAnswerModel = function() {
             return answer.correct === true;
         });
     }, this);
+	
+	self.percentCorrect = ko.computed(function() {
+		if (this.answers().length === 0) return '0%';
+		return Math.floor((this.correctAnswers().length / this.answers().length) * 100) + '%'; 
+	}, this);
 };
  
 var viewModel = new QuestionAndAnswerModel();
-
-/*
-var viewModel = {
-   English:ko.observable(""),
-   wordIndex:ko.observable(0),
-   answer:ko.observable(""),
-   correctAnswer:ko.observable(""),
-   shouldShowMessage:ko.observable(false),
-   Italian:ko.observable("")
-};
-*/
 
 // Activates knockout.js
 ko.applyBindings(viewModel);
