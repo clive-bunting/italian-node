@@ -39,3 +39,20 @@ exports.words = function(req, res){
   var x = random.from0to(verbs.verbs.length-1); 
   res.send({English:verbs.verbs[x].English, Index:x});
 };
+
+exports.generateRandomQuestionList = function(req, res) {
+	var questions = [];
+    var count = req.body.maxQuestionIndex + 1;
+	console.log(req.body);
+	
+    for (var i = count - req.body.numberOfQuestions; i < count; i++) {
+        var questionIndex = random.from0to(i + 1);
+        if (questions.indexOf(questionIndex) != -1)
+            questions.push(i);
+        else
+            questions.push(questionIndex);
+    }
+	console.log("Question list: ");
+	console.log(questions);
+	res.send({QuestionList: questions});
+};

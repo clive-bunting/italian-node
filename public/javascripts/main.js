@@ -3,6 +3,7 @@ $(document).ready(function(){
 		viewModel.English(data.English);
 		viewModel.IndexOfWord(data.Index);
 	});
+	$.post('/generateRandomQuestionList', {maxQuestionIndex:200, numberOfQuestions:10}, function(data, status) {/*alert(data.QuestionList); */});
 });
 
 $("#inputItalian").on('keyup', function(e) {

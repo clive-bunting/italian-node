@@ -33,6 +33,7 @@ app.get('/users', user.list);
 app.get('/verbs', routes.verbs);
 app.post('/verbsAnswer', routes.verbsAnswer);
 app.get('/words', routes.words);
+app.post('/generateRandomQuestionList', routes.generateRandomQuestionList);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
