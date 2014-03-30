@@ -1,13 +1,24 @@
 $(document).ready(function(){
-	$.get('/words', function(data){
-		viewModel.English(data.English);
-		viewModel.IndexOfWord(data.Index);
+	$.post('/generateRandomQuestionList', {
+		maxQuestionIndex: 179, 
+		numberOfQuestions: 10
+	}, 
+	function(data, status) {
+		viewModel.questionList(data.QuestionList);
+		viewModel.currentQuestion.indexOfWord(viewModel.questionList()[viewModel.questionNumber()]);
+		var a = viewModel.currentQuestion.indexOfWord();
+		$.post('/words', {
+			wordIndex: viewModel.currentQuestion.indexOfWord()
+		}, 
+		function(data, status) {
+			viewModel.currentQuestion.english(data.english);
+		});
+
 	});
-	$.post('/generateRandomQuestionList', {maxQuestionIndex:200, numberOfQuestions:10}, function(data, status) {/*alert(data.QuestionList); */});
 });
 
 $("#inputItalian").on('keyup', function(e) {
-	if(e.keyCode==13 && viewModel.Italian().length > 0){
+	if(e.keyCode==13 && viewModel.currentQuestion.italian().length > 0){
 		 $('#btnSubmit').trigger('click');
 	 }
 });
@@ -15,24 +26,32 @@ $("#inputItalian").on('keyup', function(e) {
 $("#btnSubmit").click(function(){
   $.post('/verbsAnswer',
   {
-	Italian:viewModel.Italian,
-	Index:viewModel.IndexOfWord
+	Italian:viewModel.currentQuestion.italian,
+	Index:viewModel.currentQuestion.indexOfWord
   },
   function(data,status){
 	viewModel.addAnswer({question:data.question, answer:data.answer, correctAnswer:data.correctAnswer, correct:data.correct});
-	viewModel.English(data.English);
-	viewModel.Italian("");
-	viewModel.IndexOfWord(data.Index);
+	viewModel.currentQuestion.english(data.English);
+	viewModel.currentQuestion.italian("");
+	viewModel.currentQuestion.indexOfWord(data.Index);
+	viewModel.questionNumber(viewModel.questionNumber() + 1);
   });
 });
 
 var QuestionAndAnswerModel = function() {
     var self = this;
-	self.English = ko.observable("");
-	self.Italian = ko.observable("");
-	self.IndexOfWord = ko.observable(0);
+	self.questionList = ko.observableArray([]);
+	
+	self.questionNumber = ko.observable(0);
+	self.totalNumberOfQuestions = 10;
+
+	self.currentQuestion = {};
+	self.currentQuestion.english = ko.observable("");
+	self.currentQuestion.italian = ko.observable("");
+	self.currentQuestion.indexOfWord = ko.observable(0);
+
     self.answers = ko.observableArray([]);
- 
+	
     self.addAnswer = function(answer) {
         self.answers.unshift(answer);
     };

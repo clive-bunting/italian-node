@@ -7,10 +7,10 @@ block content
     p Ok let's test our knowledge of #{title}
   
     div The translation of "
-      span(data-bind="text: English")
+      span(data-bind="text: currentQuestion.english")
       span " is  
-      input#inputItalian(type="text", data-bind="value: Italian, valueUpdate: 'afterkeydown'", placeholder="Italian", name="Italian") 
-      button#btnSubmit(type="submit", data-bind="enable: Italian().length > 0") submit
+      input#inputItalian(type="text", data-bind="value: currentQuestion.italian, valueUpdate: 'afterkeydown'", placeholder="Italian", name="Italian") 
+      button#btnSubmit(type="submit", data-bind="enable: currentQuestion.italian().length > 0") submit
 
 
       div So far you have got 

@@ -36,13 +36,14 @@ exports.verbsAnswer = function(req, res){
 };
 
 exports.words = function(req, res){
-  var x = random.from0to(verbs.verbs.length-1); 
-  res.send({English:verbs.verbs[x].English, Index:x});
+  console.log(req.body.wordIndex);
+  res.send({english:verbs.verbs[Number(req.body.wordIndex)].English});
 };
 
 exports.generateRandomQuestionList = function(req, res) {
 	var questions = [];
-    var count = req.body.maxQuestionIndex + 1;
+    var count = Number(req.body.maxQuestionIndex) + 1;
+	console.log(count);
 	console.log(req.body);
 	
     for (var i = count - req.body.numberOfQuestions; i < count; i++) {
