@@ -14,7 +14,7 @@ exports.verbs = function(req, res){
 };
 
 exports.verbsAnswer = function(req, res){
-  if(verbs.verbs[req.body.Index].Italian === req.body.Italian)
+  if(verbs.verbs[req.body.Index].Italian === req.body.Italian.toLowerCase())
   	res.send({
 	    correct:true,
 		question:verbs.verbs[req.body.Index].English,
