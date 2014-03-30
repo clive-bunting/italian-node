@@ -14,15 +14,14 @@ exports.verbs = function(req, res){
 };
 
 exports.verbsAnswer = function(req, res){
-  var x = random.from0to(verbs.verbs.length-1); 
   if(verbs.verbs[req.body.Index].Italian === req.body.Italian)
   	res.send({
 	    correct:true,
 		question:verbs.verbs[req.body.Index].English,
 		answer:req.body.Italian, 
 		correctAnswer:verbs.verbs[req.body.Index].Italian,
-		English:verbs.verbs[x].English, 
-		Index:x
+		English:verbs.verbs[req.body.NextIndex].English, 
+		Index:req.body.NextIndex
 		});
   else
   	res.send({
@@ -30,21 +29,18 @@ exports.verbsAnswer = function(req, res){
 		question:verbs.verbs[req.body.Index].English,
 		answer:req.body.Italian, 
 		correctAnswer:verbs.verbs[req.body.Index].Italian,
-		English:verbs.verbs[x].English, 
-		Index:x
+		English:verbs.verbs[req.body.NextIndex].English, 
+		Index:req.body.NextIndex
 		});
 };
 
 exports.words = function(req, res){
-  console.log(req.body.wordIndex);
   res.send({english:verbs.verbs[Number(req.body.wordIndex)].English});
 };
 
 exports.generateRandomQuestionList = function(req, res) {
 	var questions = [];
     var count = Number(req.body.maxQuestionIndex) + 1;
-	console.log(count);
-	console.log(req.body);
 	
     for (var i = count - req.body.numberOfQuestions; i < count; i++) {
         var questionIndex = random.from0to(i + 1);
@@ -53,7 +49,5 @@ exports.generateRandomQuestionList = function(req, res) {
         else
             questions.push(questionIndex);
     }
-	console.log("Question list: ");
-	console.log(questions);
 	res.send({QuestionList: questions});
 };

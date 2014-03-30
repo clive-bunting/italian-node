@@ -27,7 +27,8 @@ $("#btnSubmit").click(function(){
   $.post('/verbsAnswer',
   {
 	Italian:viewModel.currentQuestion.italian,
-	Index:viewModel.currentQuestion.indexOfWord
+	Index:viewModel.currentQuestion.indexOfWord,
+	NextIndex:viewModel.questionNumber() + 1
   },
   function(data,status){
 	viewModel.addAnswer({question:data.question, answer:data.answer, correctAnswer:data.correctAnswer, correct:data.correct});
