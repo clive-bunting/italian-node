@@ -31,6 +31,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/verbs', routes.verbs);
+app.get('/nouns', routes.nouns);
 app.post('/verbsAnswer', routes.verbsAnswer);
 app.post('/words', routes.words);
 app.post('/generateRandomQuestionList', routes.generateRandomQuestionList);

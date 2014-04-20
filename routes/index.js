@@ -12,6 +12,11 @@ exports.verbs = function (req, res) {
     res.render('verbs', { title: 'Italian Verbs' });
 };
 
+exports.nouns = function (req, res) {
+    "use strict";
+    res.render('nouns', { title: 'Italian Nouns' });
+};
+
 exports.verbsAnswer = function (req, res) {
     "use strict";
     var nextQuestion = "";
