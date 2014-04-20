@@ -14,9 +14,17 @@ exports.verbs = function (req, res) {
 
 exports.verbsAnswer = function (req, res) {
     "use strict";
+    var nextQuestion = "";
 
     console.log(req.body.Index);
     console.log(req.body.Italian.toLowerCase());
+    console.log(req.body.NextIndex);
+
+    if (req.body.NextIndex === "-1") {
+        console.log("Answering last question");
+    } else {
+        nextQuestion = verbs.verbs[req.body.NextIndex].English;
+    }
 
     if (verbs.verbs[req.body.Index].Italian === req.body.Italian.toLowerCase()) {
         res.send({
@@ -24,7 +32,7 @@ exports.verbsAnswer = function (req, res) {
             question: verbs.verbs[req.body.Index].English,
             answer: req.body.Italian,
             correctAnswer: verbs.verbs[req.body.Index].Italian,
-            English: verbs.verbs[req.body.NextIndex].English,
+            English: nextQuestion,
             Index: req.body.NextIndex
         });
     } else {
@@ -33,7 +41,7 @@ exports.verbsAnswer = function (req, res) {
             question: verbs.verbs[req.body.Index].English,
             answer: req.body.Italian,
             correctAnswer: verbs.verbs[req.body.Index].Italian,
-            English: verbs.verbs[req.body.NextIndex].English,
+            English: nextQuestion,
             Index: req.body.NextIndex
         });
     }

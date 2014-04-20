@@ -32,7 +32,7 @@ block content
     p Ok let's test our knowledge of #{title}
   
   .container-fluid
-    .row
+    .row(data-bind="visible: questionNumber() < questionList().length")
       .col-md-12 The translation of "
         span(data-bind="text: currentQuestion.english")
         span " is  

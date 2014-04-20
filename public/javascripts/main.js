@@ -39,7 +39,7 @@ var viewModel = new QuestionAndAnswerModel();
 $(document).ready(function () {
     "use strict";
     $.post('/generateRandomQuestionList', {
-        maxQuestionIndex: 179,
+        maxQuestionIndex: 178,
         numberOfQuestions: 10
     },
             function (data) {
@@ -64,11 +64,16 @@ $("#inputItalian").on('keyup', function (e) {
 
 $("#btnSubmit").click(function () {
     "use strict";
+	var nextIndex = -1;
+	if (viewModel.questionNumber() + 1 < viewModel.totalNumberOfQuestions) {
+        nextIndex = viewModel.questionList()[viewModel.questionNumber() + 1];
+    }
+	
     $.post('/verbsAnswer',
         {
             Italian: viewModel.currentQuestion.italian,
             Index: viewModel.currentQuestion.indexOfWord,
-            NextIndex: viewModel.questionList()[viewModel.questionNumber() + 1]
+            NextIndex: nextIndex
         },
         function (data) {
             viewModel.addAnswer({question: data.question, answer: data.answer, correctAnswer: data.correctAnswer, correct: data.correct});
